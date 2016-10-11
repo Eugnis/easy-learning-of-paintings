@@ -1,1 +1,1 @@
-Easy learning of paintings
+# Easy learning of paintings
