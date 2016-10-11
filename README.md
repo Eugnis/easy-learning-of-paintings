@@ -1,1 +1,1 @@
-# easy-learning-of-paintings
+# easy-learning-of-paintingss
