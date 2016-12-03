@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">Easy Learning of Paintings</string>
+    <string name="app_name" translatable="false">Easy Learning of Paintings</string>
     <string name="action_settings">Settings</string>
+    <string name="menu_randomArticle">Random article</string>
+    <string name="menu_styles">Painting styles</string>
+    <string name="menu_painters">Painters</string>
+    <string name="menu_guessGame">Game \"Guess the painting\"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
