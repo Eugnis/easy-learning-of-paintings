@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Настройки</string>
+    <string name="menu_randomArticle">Случайная статья</string>
+    <string name="menu_styles">Стили живописи</string>
+    <string name="menu_painters">Художники</string>
+    <string name="menu_guessGame">Игра \"Угадай картину\"</string>
+</resources>
