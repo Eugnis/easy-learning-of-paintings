@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openStyles(View v) {
-        Intent intent = new Intent(this, ArticleSelectActivity.class);
+        Intent intent = new Intent(this, ArticlesSelectActivity.class);
         intent.putExtra(MODE, "styles");
         startActivity(intent);
         Toast.makeText(this, "Styles", Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     public void openPainters(View v) {
         Toast.makeText(this, "Painters", Toast.LENGTH_SHORT).show();
         ListPainters();
-        Intent intent = new Intent(this, ArticleSelectActivity.class);
+        Intent intent = new Intent(this, ArticlesSelectActivity.class);
         intent.putExtra(MODE, "painters");
         startActivity(intent);
     }

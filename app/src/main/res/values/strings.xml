@@ -12,4 +12,10 @@
     <string name="title_activity_article_select">ArticleSelectActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_article_list">Articles</string>
+    <string name="title_article_detail">Article Detail</string>
+    <string name="title_activity_articles_select">ArticlesSelectActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

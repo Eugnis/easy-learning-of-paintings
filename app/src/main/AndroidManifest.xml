@@ -21,10 +21,9 @@
         </activity>
         <activity android:name=".PaintingView" />
         <activity
-            android:name=".ArticleSelectActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_article_select"
-            android:theme="@style/FullscreenTheme" />
+            android:name=".ArticlesSelectActivity"
+            android:label="@string/title_activity_articles_select"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

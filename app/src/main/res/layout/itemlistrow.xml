@@ -4,7 +4,7 @@
     android:layout_width="fill_parent">
 
 
-        <TextView android:textColor="#FFFFFF"
+        <TextView android:textColor="#120404"
             android:id="@+id/painterList_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -12,7 +12,7 @@
             android:layout_weight="1"
             android:typeface="monospace" />
 
-        <TextView android:textColor="#FFFFFF"
+        <TextView android:textColor="#120404"
             android:id="@+id/painterList_years"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
