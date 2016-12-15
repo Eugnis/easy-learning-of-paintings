@@ -20,7 +20,6 @@ import android.widget.Toast;
  */
 public class MainMenuFragment extends Fragment {
 
-    ViewGroup mContainer;
     public MainMenuFragment() {
         // Required empty public constructor
     }

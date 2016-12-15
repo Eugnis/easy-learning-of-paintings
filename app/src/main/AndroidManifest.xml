@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PaintingView" />
+        <activity
+            android:name=".ArticleSelectActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_article_select"
+            android:theme="@style/FullscreenTheme" />
     </application>
 
 </manifest>

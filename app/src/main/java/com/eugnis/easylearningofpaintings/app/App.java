@@ -25,7 +25,7 @@ public class  App extends Application {
         dbHelper = new DBHelper();
         DatabaseManager.initializeInstance(dbHelper);
 
-        Locale locale = new Locale("uk");
+        Locale locale = new Locale("ru");
         Locale.setDefault(locale);
         Configuration config = getBaseContext().getResources().getConfiguration();
         config.locale = locale;

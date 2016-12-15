@@ -1,5 +1,14 @@
 package com.eugnis.easylearningofpaintings.data.model;
 
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import static com.eugnis.easylearningofpaintings.app.App.getContext;
+
 /**
  * Created by Eugnis on 03.12.2016.
  */
@@ -24,11 +33,12 @@ public class Painting {
     private String name;
     private String year;
     private String about;
-    private String picture;
+    private Bitmap picture;
     private boolean watched;
 
     private String styleName;
     private String painterName;
+    private Painter painter;
 
     public int getPaintingID(){
         return paintingID;
@@ -78,12 +88,19 @@ public class Painting {
         this.about = about;
     }
 
-    public String getPicture(){
+    public Bitmap getPicture(){
         return picture;
     }
 
-    public void setPicture(String picture){
-        this.picture = picture;
+    public void setPicture(String pictureName){
+        AssetManager assetManager = getContext().getAssets();
+        try {
+            InputStream is = assetManager.open("pictures/"+ painter.getFolder() +"/paintings/"+pictureName);
+            this.picture = BitmapFactory.decodeStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public boolean getWatched(){
@@ -106,7 +123,15 @@ public class Painting {
         return painterName;
     }
 
-    public void setPainterName(String painterName){
+    public void setPainterName(Painter painter){
         this.painterName = painterName;
+    }
+
+    public Painter getPainter(){
+        return painter;
+    }
+
+    public void setPainter(Painter painter){
+        this.painter = painter;
     }
 }

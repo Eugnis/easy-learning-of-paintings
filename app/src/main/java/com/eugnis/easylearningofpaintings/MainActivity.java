@@ -1,15 +1,12 @@
 package com.eugnis.easylearningofpaintings;
 
-import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.eugnis.easylearningofpaintings.data.model.Painter;
@@ -22,6 +19,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    public final static String PICTURE_ID = "com.eugnis.easylearningofpaintings.PICTURE_ID";
+    public final static String MODE = "com.eugnis.easylearningofpaintings.MODE";
 
 
     @Override
@@ -29,20 +28,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        insertSampleData();
+        Fragment fg = new MainMenuFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.mainLayout, fg).commit();
+
+        //insertSampleData();
     }
 
+
     public void openRandomArticle(View v) {
+        Intent intent = new Intent(this, PaintingView.class);
+        intent.putExtra(PICTURE_ID, "1");
+        startActivity(intent);
+
         Toast.makeText(this, "Random article", Toast.LENGTH_SHORT).show();
     }
 
     public void openStyles(View v) {
+        Intent intent = new Intent(this, ArticleSelectActivity.class);
+        intent.putExtra(MODE, "styles");
+        startActivity(intent);
         Toast.makeText(this, "Styles", Toast.LENGTH_SHORT).show();
     }
 
     public void openPainters(View v) {
         Toast.makeText(this, "Painters", Toast.LENGTH_SHORT).show();
         ListPainters();
+        Intent intent = new Intent(this, ArticleSelectActivity.class);
+        intent.putExtra(MODE, "painters");
+        startActivity(intent);
     }
 
     public void openGuessGame(View v) {

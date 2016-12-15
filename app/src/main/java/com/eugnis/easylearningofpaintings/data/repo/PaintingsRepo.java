@@ -41,7 +41,7 @@ public class PaintingsRepo {
                 + " FOREIGN KEY ("+ Painting.KEY_StyleID +") REFERENCES "+ Style.TABLE +"("+ Style.KEY_StyleID +"));";
     }
 
-    public int insert(Painting painting) {
+    /*public int insert(Painting painting) {
         int paintingId;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
@@ -59,7 +59,7 @@ public class PaintingsRepo {
         DatabaseManager.getInstance().closeDatabase();
 
         return paintingId;
-    }
+    }*/
 
     public void delete( ) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -94,9 +94,9 @@ public class PaintingsRepo {
             do {
                 painting= new Painting();
                 painting.setPaintingID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PaintingID)));
-                painting.setPainterID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PainterID)));
-                painting.setStyleID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_StyleID)));
-                painting.setPainterName(cursor.getString(cursor.getColumnIndex("PainterName")));
+                //painting.setPainterID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PainterID)));
+                //painting.setStyleID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_StyleID)));
+                //painting.setPainterName(cursor.getString(cursor.getColumnIndex("PainterName")));
                 painting.setStyleName(cursor.getString(cursor.getColumnIndex("StyleName")));
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
@@ -112,6 +112,64 @@ public class PaintingsRepo {
         DatabaseManager.getInstance().closeDatabase();
 
         return paintingList;
+
+    }
+
+    public Painting getPainting(String paintingId){
+        Painting painting = new Painting();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String selectQuery =  " SELECT Painting." + Painting.KEY_Name
+                + ", Painting." + Painting.KEY_Year
+                + ", Painting." + Painting.KEY_About
+                + ", Painting." + Painting.KEY_Picture
+                + ", Painting." + Painting.KEY_Watched
+                + ", Painter." + Painter.KEY_PainterID
+                + ", Painter." + Painter.KEY_Name + " As PainterName"
+                + ", Painter." + Painter.KEY_Years + " As PainterYears"
+                + ", Painter." + Painter.KEY_About + " As PainterAbout"
+                + ", Painter." + Painter.KEY_Country + " As PainterCountry"
+                + ", Painter." + Painter.KEY_Folder + " As PainterFolder"
+                + ", Style." + Style.KEY_StyleID
+                + ", Style." + Style.KEY_Name + " As StyleName"
+                + " FROM " + Painting.TABLE + "  As Painting "
+                + " INNER JOIN " + Painter.TABLE + " Painter ON Painter." + Painter.KEY_PainterID + " =  Painting." + Painting.KEY_PainterID
+                + " INNER JOIN " + Style.TABLE + " Style ON Style." + Style.KEY_StyleID + " =  Painting." + Painting.KEY_StyleID
+                + " WHERE Painting." + Painting.KEY_PaintingID + " = " + paintingId
+                ;
+
+        Log.d(TAG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                //cursor.moveToPosition(0);
+                //Log.d(TAG, "Find 1 " + cursor.getColumnIndex("ID_painter"));
+                //painting= new Painting();
+                //painting.setPaintingID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PaintingID)));
+                //painting.setPainterID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PainterID)));
+                //painting.setStyleID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_StyleID)));
+                Painter painter = new Painter();
+                painter.setYears(cursor.getString(cursor.getColumnIndex("PainterYears")));
+                painter.setAbout(cursor.getString(cursor.getColumnIndex("PainterAbout")));
+                painter.setName(cursor.getString(cursor.getColumnIndex("PainterName")));
+                painter.setCountry(cursor.getString(cursor.getColumnIndex("PainterCountry")));
+                painter.setFolder(cursor.getString(cursor.getColumnIndex("PainterFolder")));
+                painting.setPainter(painter);
+
+                //painting.setPainterName(cursor.getString(cursor.getColumnIndex("PainterName")));
+                painting.setStyleName(cursor.getString(cursor.getColumnIndex("StyleName")));
+                painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
+                painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
+                painting.setPicture(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
+                painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+
+        DatabaseManager.getInstance().closeDatabase();
+
+        return painting;
 
     }
 }

@@ -11,12 +11,13 @@ import com.eugnis.easylearningofpaintings.data.model.Style;
 import com.eugnis.easylearningofpaintings.data.repo.PaintersRepo;
 import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
 import com.eugnis.easylearningofpaintings.data.repo.StylesRepo;
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 /**
  * Created by Eugnis on 03.12.2016.
  */
 
-public class DBHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteAssetHelper {
     //version number to upgrade database version
     //each time if you Add, Edit table, you need to change the
     //version number.
@@ -29,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(App.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    @Override
+    /*@Override
     public void onCreate(SQLiteDatabase db) {
         //All necessary tables you like to create will create here
         db.execSQL(PaintersRepo.createTable());
@@ -47,6 +48,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Painting.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + Style.TABLE);
         onCreate(db);
-    }
+    }*/
 
 }

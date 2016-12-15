@@ -14,12 +14,14 @@ public class Painter {
     public static final String KEY_Years = "Years";
     public static final String KEY_About = "About";
     public static final String KEY_Country = "Country";
+    public static final String KEY_Folder = "Folder_name";
 
     private int painterID;
     private String name;
     private String years;
     private String about;
     private String country;
+    private String folder;
 
     public int getPainterID(){
         return painterID;
@@ -59,6 +61,14 @@ public class Painter {
 
     public void setCountry(String country){
         this.country = country;
+    }
+
+    public String getFolder(){
+        return folder;
+    }
+
+    public void setFolder(String folder){
+        this.folder = folder;
     }
 
 }
