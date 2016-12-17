@@ -21,13 +21,9 @@
         </activity>
         <activity android:name=".PaintingView" />
         <activity
-            android:name=".ArticlesSelectActivity"
+            android:name=".CatalogActivity"
             android:label="@string/title_activity_articles_select"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".test"
-            android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

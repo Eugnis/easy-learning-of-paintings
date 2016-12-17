@@ -1,6 +1,7 @@
 package com.eugnis.easylearningofpaintings.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -8,7 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.eugnis.easylearningofpaintings.R;
 import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
 
@@ -34,22 +37,31 @@ public class CatalogAdapter extends ArrayAdapter<Painting> {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        Painting p = getItem(position);
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(getContext());
-            imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            //imageView.setPadding(8, 8, 8, 8);
-        } else {
-            imageView = (ImageView) convertView;
+        View v = convertView;
+
+        if (v == null) {
+            LayoutInflater vi;
+            vi = LayoutInflater.from(getContext());
+            v = vi.inflate(R.layout.catalogitem, null);
         }
 
+        ImageView imageView;
+        Painting p = getItem(position);
         if (p != null) {
-            imageView.setImageBitmap(p.getPicture());
+
+            TextView tt1 = (TextView) v.findViewById(R.id.textView_catalogDescription);
+            ImageView img = (ImageView) v.findViewById(R.id.imageView_catalog);
+
+            img.setImageBitmap(p.getPicture());
+            tt1.setText("\"" + p.getName()+"\"\n" + p.getPainter().getName());
+
+            //imageView = new ImageView(getContext());
+            //imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
+            //imageView.setScaleType(ImageView.ScaleType.CENTER);
+            //imageView.setPadding(8, 8, 8, 8);
         }
-        return imageView;
+
+        return v;
     }
 
 

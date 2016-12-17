@@ -1,23 +1,14 @@
 package com.eugnis.easylearningofpaintings;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eugnis.easylearningofpaintings.data.model.Painting;
 import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class PaintingView extends AppCompatActivity {
 
@@ -48,8 +39,8 @@ public class PaintingView extends AppCompatActivity {
         Intent intent = getIntent();
         Boolean random = intent.getExtras().getBoolean(MainActivity.RANDOM_ARTICLE, false);
         if (random) painting = paintingsRepo.getPainting(null);
-        else painting = paintingsRepo.getPainting(intent.getExtras().getString(ArticlesSelectActivity.PICTURE_ID));
-//        Log.d(TAG, intent.getExtras().getString(ArticlesSelectActivity.PICTURE_ID));
+        else painting = paintingsRepo.getPainting(intent.getExtras().getString(CatalogActivity.PICTURE_ID));
+//        Log.d(TAG, intent.getExtras().getString(CatalogActivity.PICTURE_ID));
 
         descriptionView.setText(painting.getAbout());
         paintingName.setText("\"" + painting.getName() + "\" " + painting.getPainter().getName());

@@ -33,5 +33,4 @@ dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }

@@ -1,10 +1,7 @@
 package com.eugnis.easylearningofpaintings;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.test.espresso.core.deps.guava.base.Predicates;
-import android.support.test.espresso.core.deps.guava.collect.Lists;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.eugnis.easylearningofpaintings.adapters.CatalogAdapter;
 import com.eugnis.easylearningofpaintings.adapters.PaintersListAdapter;
@@ -36,10 +32,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ArticlesSelectActivity extends AppCompatActivity
+public class CatalogActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
 
-    public static final String TAG = ArticlesSelectActivity.class.getSimpleName();
+    public static final String TAG = CatalogActivity.class.getSimpleName();
     public final static String PICTURE_ID = "com.eugnis.easylearningofpaintings.PICTURE_ID";
 
     ListView optionsList;
@@ -62,7 +58,7 @@ public class ArticlesSelectActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_articles_select);
+        setContentView(R.layout.catalog_activity);
 
         Intent intent = getIntent();
         String mode = intent.getStringExtra(MainActivity.MODE);
@@ -205,7 +201,7 @@ public class ArticlesSelectActivity extends AppCompatActivity
                 Painting p = (Painting)parent.getItemAtPosition(position);
                 Log.d(TAG, p.getName());
 
-                Intent intent = new Intent(ArticlesSelectActivity.this, PaintingView.class);
+                Intent intent = new Intent(CatalogActivity.this, PaintingView.class);
                 intent.putExtra(PICTURE_ID, Integer.toString(p.getPaintingID()));
                 startActivity(intent);
             }

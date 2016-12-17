@@ -3,7 +3,6 @@ package com.eugnis.easylearningofpaintings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openStyles(View v) {
-        Intent intent = new Intent(this, ArticlesSelectActivity.class);
+        Intent intent = new Intent(this, CatalogActivity.class);
         intent.putExtra(MODE, "styles");
         startActivity(intent);
         Toast.makeText(this, "Styles", Toast.LENGTH_SHORT).show();
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public void openPainters(View v) {
         Toast.makeText(this, "Painters", Toast.LENGTH_SHORT).show();
         ListPainters();
-        Intent intent = new Intent(this, ArticlesSelectActivity.class);
+        Intent intent = new Intent(this, CatalogActivity.class);
         intent.putExtra(MODE, "painters");
         startActivity(intent);
     }
