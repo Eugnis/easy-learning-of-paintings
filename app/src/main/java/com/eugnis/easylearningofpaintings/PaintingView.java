@@ -25,6 +25,10 @@ public class PaintingView extends AppCompatActivity {
 
     ImageView pictureView;
     TextView descriptionView;
+    TextView paintingName;
+    //TextView authorName;
+    TextView styleName;
+    Painting painting;
 
     boolean isImageFitToScreen;
 
@@ -34,15 +38,23 @@ public class PaintingView extends AppCompatActivity {
         setContentView(R.layout.activity_painting_view);
 
         descriptionView = (TextView) findViewById(R.id.pictureDescription);
+        paintingName = (TextView) findViewById(R.id.paintingName);
+        //authorName = (TextView) findViewById(R.id.authorName);
+        styleName = (TextView) findViewById(R.id.styleName);
         pictureView = (ImageView) findViewById(R.id.pictureView);
 
-        Intent intent = getIntent();
-        String painting_id = intent.getStringExtra(MainActivity.PICTURE_ID);
 
         PaintingsRepo paintingsRepo = new PaintingsRepo();
-        Painting painting = paintingsRepo.getPainting(painting_id);
+        Intent intent = getIntent();
+        Boolean random = intent.getExtras().getBoolean(MainActivity.RANDOM_ARTICLE, false);
+        if (random) painting = paintingsRepo.getPainting(null);
+        else painting = paintingsRepo.getPainting(intent.getExtras().getString(ArticlesSelectActivity.PICTURE_ID));
+//        Log.d(TAG, intent.getExtras().getString(ArticlesSelectActivity.PICTURE_ID));
 
-        descriptionView.append(painting.getAbout());
+        descriptionView.setText(painting.getAbout());
+        paintingName.setText("\"" + painting.getName() + "\" " + painting.getPainter().getName());
+        //authorName.setText(painting.getPainter().getName());
+        styleName.append(painting.getStyle().getName());
         pictureView.setImageBitmap(painting.getPicture());
 
         /*AssetManager assetManager = getAssets();

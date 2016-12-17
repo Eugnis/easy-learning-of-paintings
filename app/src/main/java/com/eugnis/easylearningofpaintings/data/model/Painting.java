@@ -39,6 +39,7 @@ public class Painting {
     private String styleName;
     private String painterName;
     private Painter painter;
+    private Style style;
 
     public int getPaintingID(){
         return paintingID;
@@ -133,5 +134,13 @@ public class Painting {
 
     public void setPainter(Painter painter){
         this.painter = painter;
+    }
+
+    public Style getStyle(){
+        return style;
+    }
+
+    public void setStyle(Style style){
+        this.style = style;
     }
 }

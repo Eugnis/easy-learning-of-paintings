@@ -13,4 +13,16 @@
     tools:context="com.eugnis.easylearningofpaintings.ArticlesSelectActivity"
     tools:showIn="@layout/app_bar_articles_select">
 
+    <GridView
+        android:id="@+id/gridViewCatalog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="85dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        />
+
 </RelativeLayout>

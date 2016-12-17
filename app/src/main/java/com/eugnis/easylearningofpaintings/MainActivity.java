@@ -19,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-    public final static String PICTURE_ID = "com.eugnis.easylearningofpaintings.PICTURE_ID";
+    public final static String RANDOM_ARTICLE = "com.eugnis.easylearningofpaintings.RANDOM_ARTICLE";
     public final static String MODE = "com.eugnis.easylearningofpaintings.MODE";
 
 
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openRandomArticle(View v) {
         Intent intent = new Intent(this, PaintingView.class);
-        intent.putExtra(PICTURE_ID, "1");
+        intent.putExtra(RANDOM_ARTICLE, true);
         startActivity(intent);
 
         Toast.makeText(this, "Random article", Toast.LENGTH_SHORT).show();

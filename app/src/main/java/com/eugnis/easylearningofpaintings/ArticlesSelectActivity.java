@@ -1,15 +1,14 @@
 package com.eugnis.easylearningofpaintings;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.test.espresso.core.deps.guava.base.Predicates;
+import android.support.test.espresso.core.deps.guava.collect.Lists;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,26 +16,48 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.eugnis.easylearningofpaintings.adapters.CatalogAdapter;
+import com.eugnis.easylearningofpaintings.adapters.PaintersListAdapter;
+import com.eugnis.easylearningofpaintings.adapters.StylesListAdapter;
 import com.eugnis.easylearningofpaintings.data.model.Painter;
+import com.eugnis.easylearningofpaintings.data.model.Painting;
 import com.eugnis.easylearningofpaintings.data.model.Style;
 import com.eugnis.easylearningofpaintings.data.repo.PaintersRepo;
+import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
 import com.eugnis.easylearningofpaintings.data.repo.StylesRepo;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ArticlesSelectActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
 
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = ArticlesSelectActivity.class.getSimpleName();
+    public final static String PICTURE_ID = "com.eugnis.easylearningofpaintings.PICTURE_ID";
 
     ListView optionsList;
+    EditText searchTxt_left;
+    GridView gridViewCatalog;
+    int length;
     boolean stylesMode;
+    DrawerLayout drawer;
+
+    PaintersRepo paintersRepo;
+    List<Painter> paintersList, painterListFull;
+    PaintersListAdapter paintersListAdapter;
+    StylesRepo stylesRepo;
+    List<Style> stylesList, styleListFull;
+    StylesListAdapter stylesListAdapter;
+    PaintingsRepo paintingsRepo;
+    List<Painting> paintingsList, paintingsListFull;
+    CatalogAdapter paintingsCatalogAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,61 +73,165 @@ public class ArticlesSelectActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        drawer.openDrawer(Gravity.LEFT);
+        drawer.openDrawer(GravityCompat.START);
 
-
-
-        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-        //Menu menu = navigationView.getMenu();
-        //menu.clear();
-        //Menu topChannelMenu = menu.addSubMenu("Стилі");
-
-        if (!stylesMode)
-        {
-            //topChannelMenu.add()
-            PaintersRepo paintersRepo = new PaintersRepo();
-            List<Painter> paintersList= paintersRepo.getPainters();
-
-            optionsList = (ListView) this.findViewById(R.id.optionsList);
-            PaintersListAdapter adapter = new PaintersListAdapter(this, R.layout.itemlistrow, paintersList);
-            optionsList.setAdapter(adapter);
-            optionsList.setOnItemClickListener(this);
+        optionsList = (ListView) this.findViewById(R.id.optionsList);
+        optionsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        optionsList.setSelector(R.color.black_overlay);
+        if (!stylesMode) {
+            paintersRepo = new PaintersRepo();
+            painterListFull = paintersRepo.getPainters();
         }
         else {
-            StylesRepo stylesRepo = new StylesRepo();
-            List<Style> stylesList= stylesRepo.getStyles();
+            stylesRepo = new StylesRepo();
+            styleListFull= stylesRepo.getStyles();
+        }
+        fillList();
+        fillCatalog(null);
 
+        searchTxt_left = (EditText) findViewById(R.id.txtSearch_left);
+        searchTxt_left.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                length=s.toString().length();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (s.toString().equals("")) {
+                    fillList();
+                }
+                else {
+                    searchItem(s.toString());
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() < length) {
+                    fillList();
+                    if (!stylesMode){
+                        for (Iterator<Painter> it = paintersList.iterator(); it.hasNext(); ) {
+                            Painter item = it.next();
+                            if(!item.getName().toLowerCase().contains(s.toString().toLowerCase())){
+                                it.remove();
+                            }
+                        }
+                        //paintersListAdapter.notifyDataSetChanged();
+                    }
+                    else {
+                        for (Iterator<Style> it = stylesList.iterator(); it.hasNext(); ) {
+                            Style item = it.next();
+                            if(!item.getName().toLowerCase().contains(s.toString().toLowerCase())){
+                                it.remove();
+                            }
+                        }
+                        //stylesListAdapter.notifyDataSetChanged();
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
+    public void searchItem (String txtToSearch){
+        if (!stylesMode){
+            for (Iterator<Painter> it = paintersList.iterator(); it.hasNext(); ) {
+                Painter item = it.next();
+                if (!item.getName().toLowerCase().contains(txtToSearch.toLowerCase())) {
+                    it.remove();
+                }
+            }
+            paintersListAdapter.notifyDataSetChanged();
+        }
+        else {
+            for (Iterator<Style> it = stylesList.iterator(); it.hasNext(); ) {
+                Style item = it.next();
+                if (!item.getName().toLowerCase().contains(txtToSearch.toLowerCase())) {
+                    it.remove();
+                }
+            }
+            stylesListAdapter.notifyDataSetChanged();
+        }
+    }
+
+
+    private void fillList(){
+        if (!stylesMode)
+        {
+            paintersList = new ArrayList<>();
+            paintersList.addAll(painterListFull);
+            paintersListAdapter = new PaintersListAdapter(this, R.layout.itemlistrow, paintersList);
+            optionsList.setAdapter(paintersListAdapter);
+        }
+        else {
+            stylesList = new ArrayList<>();
+            stylesList.addAll(styleListFull);
             optionsList = (ListView) this.findViewById(R.id.optionsList);
-            StylesListAdapter adapter = new StylesListAdapter(this, R.layout.itemlistrow, stylesList);
-            optionsList.setAdapter(adapter);
-            optionsList.setOnItemClickListener(this);
+            stylesListAdapter = new StylesListAdapter(this, R.layout.itemlistrow, stylesList);
+            optionsList.setAdapter(stylesListAdapter);
+        }
+        optionsList.setOnItemClickListener(this);
+    }
+
+    private void fillCatalog(Integer filterID){
+        paintingsRepo = new PaintingsRepo();
+        if (filterID==null) paintingsList= paintingsRepo.getPaintings();    //ПОМЕНЯТЬ!!!
+        else
+        {
+            if (!stylesMode) paintingsList= paintingsRepo.getFilteredPaintings(Painter.TAG, filterID);
+            else paintingsList= paintingsRepo.getFilteredPaintings(Style.TAG, filterID);
         }
 
 
+        gridViewCatalog = (GridView) findViewById(R.id.gridViewCatalog);
+        paintingsCatalogAdapter = new CatalogAdapter(this, R.layout.itemlistrow, paintingsList);
+        gridViewCatalog.setAdapter(paintingsCatalogAdapter);
 
-        //topChannelMenu.add("Foo");
-        //topChannelMenu.add("Bar");
-        //topChannelMenu.add("Baz");
+        gridViewCatalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Painting p = (Painting)parent.getItemAtPosition(position);
+                Log.d(TAG, p.getName());
 
-        //navigationView.invalidate(); // Trying to force a redraw, doesn't help.
+                Intent intent = new Intent(ArticlesSelectActivity.this, PaintingView.class);
+                intent.putExtra(PICTURE_ID, Integer.toString(p.getPaintingID()));
+                startActivity(intent);
+            }
+        });
+    }
 
-        //navigationView.setNavigationItemSelectedListener(this);
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Integer filterID=null;
+        if (!stylesMode)
+        {
+            Painter p = (Painter) parent.getItemAtPosition(position);
+            Log.d(TAG, p.getName());
+            filterID = p.getPainterID();
+        }
+        else
+        {
+            Style p = (Style) parent.getItemAtPosition(position);
+            Log.d(TAG, p.getName());
+            filterID = p.getStyleID();
+        }
+        optionsList.setItemChecked(position, true);
+        //view.setBackgroundColor(Color.BLUE);
+
+        fillCatalog(filterID);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
@@ -142,100 +267,11 @@ public class ArticlesSelectActivity extends AppCompatActivity
     }
 
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+    public void backToMenu(View v) {
+
+        finish();
     }
 }
 
-class PaintersListAdapter extends ArrayAdapter<Painter> {
-
-    public PaintersListAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
-
-    public PaintersListAdapter(Context context, int resource, List<Painter> items) {
-        super(context, resource, items);
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        View v = convertView;
-
-        if (v == null) {
-            LayoutInflater vi;
-            vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.itemlistrow, null);
-        }
-
-        Painter p = getItem(position);
-
-        if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.painterList_name);
-            TextView tt2 = (TextView) v.findViewById(R.id.painterList_years);
-            // TextView tt3 = (TextView) v.findViewById(R.id.description);
-
-            if (tt1 != null) {
-                tt1.setText(p.getName());
-            }
-
-            if (tt2 != null) {
-                tt2.setText(p.getYears());
-            }
-/*
-            if (tt3 != null) {
-                tt3.setText(p.getDescription());
-            }*/
-        }
-
-        return v;
-    }
-
-}
-
-class StylesListAdapter extends ArrayAdapter<Style>  {
-
-    public StylesListAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
-
-    public StylesListAdapter(Context context, int resource, List<Style> items) {
-        super(context, resource, items);
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        View v = convertView;
-
-        if (v == null) {
-            LayoutInflater vi;
-            vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.itemlistrow, null);
-        }
-
-        Style p = getItem(position);
-
-        if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.painterList_name);
-            TextView tt2 = (TextView) v.findViewById(R.id.painterList_years);
-            // TextView tt3 = (TextView) v.findViewById(R.id.description);
-
-            if (tt1 != null) {
-                tt1.setText(p.getName());
-            }
-
-            if (tt2 != null) {
-                // tt2.setText(p.getAbout());
-            }
-/*
-            if (tt3 != null) {
-                tt3.setText(p.getDescription());
-            }*/
-        }
-
-        return v;
-    }
-
-}

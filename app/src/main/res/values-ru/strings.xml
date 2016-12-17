@@ -5,4 +5,6 @@
     <string name="menu_styles">Стили живописи</string>
     <string name="menu_painters">Художники</string>
     <string name="menu_guessGame">Игра \"Угадай картину\"</string>
+    <string name="styleText">"Стиль: "</string>
+    <string name="search_hint">Пошук...</string>
 </resources>
