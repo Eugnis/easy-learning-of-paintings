@@ -8,4 +8,6 @@
     <string name="title_activity_articles_select">Перегляд статей</string>
     <string name="styleText">"Стиль: "</string>
     <string name="search_hint">Пошук...</string>
+    <string name="painter">"Художник: "</string>
+    <string name="stytle">"Стиль: "</string>
 </resources>

@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PaintingView" />
+        <activity android:name=".ArticleView" />
         <activity
             android:name=".CatalogActivity"
             android:label="@string/title_activity_articles_select"

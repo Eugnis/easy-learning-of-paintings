@@ -7,4 +7,6 @@
     <string name="menu_guessGame">Игра \"Угадай картину\"</string>
     <string name="styleText">"Стиль: "</string>
     <string name="search_hint">Пошук...</string>
+    <string name="painter">"Художник: "</string>
+    <string name="stytle">"Стиль: "</string>
 </resources>

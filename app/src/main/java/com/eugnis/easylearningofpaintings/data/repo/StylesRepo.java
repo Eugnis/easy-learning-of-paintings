@@ -84,4 +84,31 @@ public class StylesRepo {
         return stylesList;
 
     }
+
+    public Style getStyle(String ID) {
+        Style style = new Style();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String selectQuery =  " SELECT " + Style.KEY_StyleID
+                + ", " + Style.KEY_Name
+                + ", " + Style.KEY_About
+                + " FROM " + Style.TABLE
+                + " WHERE " + Style.KEY_StyleID + " = " + ID;
+
+        Log.d(TAG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                style.setStyleID(cursor.getInt(cursor.getColumnIndex(Style.KEY_StyleID)));
+                style.setName(cursor.getString(cursor.getColumnIndex(Style.KEY_Name)));
+                style.setAbout(cursor.getString(cursor.getColumnIndex(Style.KEY_About)));
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        DatabaseManager.getInstance().closeDatabase();
+
+        return style;
+    }
 }

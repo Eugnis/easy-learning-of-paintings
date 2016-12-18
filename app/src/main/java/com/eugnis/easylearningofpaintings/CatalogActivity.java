@@ -14,9 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eugnis.easylearningofpaintings.adapters.CatalogAdapter;
 import com.eugnis.easylearningofpaintings.adapters.PaintersListAdapter;
@@ -37,13 +40,23 @@ public class CatalogActivity extends AppCompatActivity
 
     public static final String TAG = CatalogActivity.class.getSimpleName();
     public final static String PICTURE_ID = "com.eugnis.easylearningofpaintings.PICTURE_ID";
+    public final static String ARTICLE_TYPE = "com.eugnis.easylearningofpaintings.ARTICLE_TYPE";
+    public final static String ARTICLE_ID = "com.eugnis.easylearningofpaintings.ARTICLE_ID";
 
+
+    //Toolbar toolbar;
+    Button showAbout;
+    MenuItem menuItem;
+    TextView toolbarTitle;
     ListView optionsList;
     EditText searchTxt_left;
     GridView gridViewCatalog;
     int length;
     boolean stylesMode;
     DrawerLayout drawer;
+
+    Painter currentPainter;
+    Style currentStyle;
 
     PaintersRepo paintersRepo;
     List<Painter> paintersList, painterListFull;
@@ -54,6 +67,7 @@ public class CatalogActivity extends AppCompatActivity
     PaintingsRepo paintingsRepo;
     List<Painting> paintingsList, paintingsListFull;
     CatalogAdapter paintingsCatalogAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +80,10 @@ public class CatalogActivity extends AppCompatActivity
 
         Log.d(TAG, mode);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.catalog_toolbar);
         setSupportActionBar(toolbar);
+        toolbarTitle = (TextView) findViewById(R.id.catalogToolbar_title);
+        showAbout = (Button) findViewById(R.id.showAbout_btn);
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -82,10 +98,14 @@ public class CatalogActivity extends AppCompatActivity
         optionsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         optionsList.setSelector(R.color.black_overlay);
         if (!stylesMode) {
+            toolbarTitle.setText("Вибір художника");
+            showAbout.setVisibility(View.INVISIBLE);
             paintersRepo = new PaintersRepo();
             painterListFull = paintersRepo.getPainters();
         }
         else {
+            toolbarTitle.setText("Вибір стиля");
+            showAbout.setVisibility(View.INVISIBLE);
             stylesRepo = new StylesRepo();
             styleListFull= stylesRepo.getStyles();
         }
@@ -181,15 +201,21 @@ public class CatalogActivity extends AppCompatActivity
         optionsList.setOnItemClickListener(this);
     }
 
-    private void fillCatalog(Integer filterID){
+    private void fillCatalog(Object selected){
         paintingsRepo = new PaintingsRepo();
-        if (filterID==null) paintingsList= paintingsRepo.getPaintings();    //ПОМЕНЯТЬ!!!
-        else
-        {
-            if (!stylesMode) paintingsList= paintingsRepo.getFilteredPaintings(Painter.TAG, filterID);
-            else paintingsList= paintingsRepo.getFilteredPaintings(Style.TAG, filterID);
+        if (selected instanceof Painter) {
+            Painter p = (Painter)selected;
+            paintingsList= paintingsRepo.getFilteredPaintings(Painter.TAG, p.getPainterID());
+            toolbarTitle.setText(String.format("%s%s", getString(R.string.painter), p.getName()));
+            showAbout.setVisibility(View.VISIBLE);
         }
-
+        else if (selected instanceof Style){
+            Style s = (Style)selected;
+            paintingsList= paintingsRepo.getFilteredPaintings(Style.TAG, s.getStyleID());
+            toolbarTitle.setText(String.format("%s%s", getString(R.string.stytle), s.getName()));
+            showAbout.setVisibility(View.VISIBLE);
+        }
+        else paintingsList= paintingsRepo.getPaintings();
 
         gridViewCatalog = (GridView) findViewById(R.id.gridViewCatalog);
         paintingsCatalogAdapter = new CatalogAdapter(this, R.layout.itemlistrow, paintingsList);
@@ -210,23 +236,20 @@ public class CatalogActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Integer filterID=null;
         if (!stylesMode)
         {
-            Painter p = (Painter) parent.getItemAtPosition(position);
-            Log.d(TAG, p.getName());
-            filterID = p.getPainterID();
+            currentPainter = (Painter) parent.getItemAtPosition(position);
+            Log.d(TAG, currentPainter.getName());
+            fillCatalog(currentPainter);
         }
         else
         {
-            Style p = (Style) parent.getItemAtPosition(position);
-            Log.d(TAG, p.getName());
-            filterID = p.getStyleID();
+            currentStyle = (Style) parent.getItemAtPosition(position);
+            Log.d(TAG, currentStyle.getName());
+            fillCatalog(currentStyle);
         }
         optionsList.setItemChecked(position, true);
         //view.setBackgroundColor(Color.BLUE);
-
-        fillCatalog(filterID);
         drawer.closeDrawer(GravityCompat.START);
     }
 
@@ -240,30 +263,20 @@ public class CatalogActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.articles_select, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void showAbout(View v) {
+        Intent intent = new Intent(this, ArticleView.class);
+        if (!stylesMode){
+            intent.putExtra(ARTICLE_TYPE, Painter.TAG);
+            intent.putExtra(ARTICLE_ID, Integer.toString(currentPainter.getPainterID()));
         }
+        else {
+            intent.putExtra(ARTICLE_TYPE, Style.TAG);
+            intent.putExtra(ARTICLE_ID, Integer.toString(currentStyle.getStyleID()));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
 
-        return super.onOptionsItemSelected(item);
     }
-
-
-
 
     public void backToMenu(View v) {
 

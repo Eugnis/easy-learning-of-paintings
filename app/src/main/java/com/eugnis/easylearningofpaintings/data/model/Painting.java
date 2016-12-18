@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import static com.eugnis.easylearningofpaintings.app.App.getContext;
 

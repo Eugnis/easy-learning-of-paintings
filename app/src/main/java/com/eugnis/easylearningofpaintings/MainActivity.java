@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(RANDOM_ARTICLE, true);
         startActivity(intent);
 
-        Toast.makeText(this, "Random article", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Random article", Toast.LENGTH_SHORT).show();
     }
 
     public void openStyles(View v) {
         Intent intent = new Intent(this, CatalogActivity.class);
         intent.putExtra(MODE, "styles");
         startActivity(intent);
-        Toast.makeText(this, "Styles", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Styles", Toast.LENGTH_SHORT).show();
     }
 
     public void openPainters(View v) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openGuessGame(View v) {
-        Toast.makeText(this, "GuessGame", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "GuessGame", Toast.LENGTH_SHORT).show();
     }
 
     private void insertSampleData(){

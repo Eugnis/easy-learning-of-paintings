@@ -20,4 +20,6 @@
     <string name="styleText">"Стиль: "</string>
     <string name="title_activity_test">test</string>
     <string name="search_hint">Пошук...</string>
+    <string name="painter">"Художник: "</string>
+    <string name="stytle">"Стиль: "</string>
 </resources>

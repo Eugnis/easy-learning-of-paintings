@@ -67,6 +67,7 @@ public class PaintersRepo {
                 + ", " + Painter.KEY_Years
                 + ", " + Painter.KEY_About
                 + ", " + Painter.KEY_Country
+                + ", " + Painter.KEY_Folder
                 + " FROM " + Painter.TABLE;
 
         Log.d(TAG, selectQuery);
@@ -80,6 +81,8 @@ public class PaintersRepo {
                 painter.setAbout(cursor.getString(cursor.getColumnIndex(Painter.KEY_About)));
                 painter.setYears(cursor.getString(cursor.getColumnIndex(Painter.KEY_Years)));
                 painter.setCountry(cursor.getString(cursor.getColumnIndex(Painter.KEY_Country)));
+                painter.setFolder(cursor.getString(cursor.getColumnIndex(Painter.KEY_Folder)));
+
 
 
                 paintersList.add(painter);
@@ -94,4 +97,38 @@ public class PaintersRepo {
     }
 
 
+    public Painter getPainter(String ID) {
+        Painter painter= new Painter();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String selectQuery =  " SELECT " + Painter.KEY_PainterID
+                + ", " + Painter.KEY_Name
+                + ", " + Painter.KEY_Years
+                + ", " + Painter.KEY_About
+                + ", " + Painter.KEY_Country
+                + ", " + Painter.KEY_Folder
+                + " FROM " + Painter.TABLE
+                + " WHERE " + Painter.KEY_PainterID + " = " + ID;
+
+        Log.d(TAG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                painter.setPainterID(cursor.getInt(cursor.getColumnIndex(Painter.KEY_PainterID)));
+                painter.setName(cursor.getString(cursor.getColumnIndex(Painter.KEY_Name)));
+                painter.setAbout(cursor.getString(cursor.getColumnIndex(Painter.KEY_About)));
+                painter.setYears(cursor.getString(cursor.getColumnIndex(Painter.KEY_Years)));
+                painter.setCountry(cursor.getString(cursor.getColumnIndex(Painter.KEY_Country)));
+                painter.setFolder(cursor.getString(cursor.getColumnIndex(Painter.KEY_Folder)));
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        DatabaseManager.getInstance().closeDatabase();
+
+        return painter;
+
+
+    }
 }
