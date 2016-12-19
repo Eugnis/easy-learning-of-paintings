@@ -3,6 +3,7 @@ package com.eugnis.easylearningofpaintings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     public final static String RANDOM_ARTICLE = "com.eugnis.easylearningofpaintings.RANDOM_ARTICLE";
     public final static String MODE = "com.eugnis.easylearningofpaintings.MODE";
 
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Fragment fg = new MainMenuFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.mainLayout, fg).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, fg).commit();
 
         //insertSampleData();
     }
@@ -50,16 +55,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openPainters(View v) {
-        Toast.makeText(this, "Painters", Toast.LENGTH_SHORT).show();
-        ListPainters();
+        //Toast.makeText(this, "Painters", Toast.LENGTH_SHORT).show();
+        //ListPainters();
         Intent intent = new Intent(this, CatalogActivity.class);
         intent.putExtra(MODE, "painters");
         startActivity(intent);
     }
 
-    public void openGuessGame(View v) {
+    public void openGuessGameMenu(View v) {
         //Toast.makeText(this, "GuessGame", Toast.LENGTH_SHORT).show();
+        GuessGameMenuFragment guessMenu = new GuessGameMenuFragment();   // instantiate fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, guessMenu).addToBackStack(null).commit();  //  replace original fragment with new fragment, add original to backstack
     }
+
+    public void openDrawGame(View view) {
+        Intent intent = new Intent(this, DrawGameActivity.class);
+        startActivity(intent);
+    }
+
+    public void openGuessGame(View view) {
+        Intent intent = new Intent(this, GuessGameActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        FragmentManager fm = this.getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() != 0){
+            fm.popBackStack();
+            return;
+        }
+
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            super.onBackPressed();
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), R.string.exitMessage, Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
+
+    }
+
 
     private void insertSampleData(){
         PaintersRepo paintersRepo = new PaintersRepo();
@@ -117,5 +155,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"=============================================================");
 
     }
+
 
 }

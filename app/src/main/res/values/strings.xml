@@ -22,4 +22,7 @@
     <string name="search_hint">Пошук...</string>
     <string name="painter">"Художник: "</string>
     <string name="stytle">"Стиль: "</string>
+    <string name="quizgame_btn">QuizGame</string>
+    <string name="drawgame_btn">Малевалка</string>
+    <string name="exitMessage">Для виходу натисніть НАЗАД ще раз</string>
 </resources>

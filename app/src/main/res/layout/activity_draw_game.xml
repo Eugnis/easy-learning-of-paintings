@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/tools">
+
+    <com.simplify.ink.InkView
+        android:id="@+id/ink"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chooseColorBtn" />
+
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:src="@drawable/ic_palette_white_24dp"
+        android:id="@+id/floatingMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:menu_openDirection="right"
+        android:layout_gravity="top|start"
+        >
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/chooseColorBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_palette_white_24dp"
+            fab:fab_size="mini"
+            android:onClick="chooseColor"
+            fab:fab_label="Вибір кольору" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/clearBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_palette_white_24dp"
+            fab:fab_size="mini"
+            android:onClick="chooseColor"
+            fab:fab_label="Вибір кольору" />
+    </com.github.clans.fab.FloatingActionMenu>
+
+
+</android.support.design.widget.CoordinatorLayout>

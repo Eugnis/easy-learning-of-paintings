@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 
 import com.eugnis.easylearningofpaintings.data.DBHelper;
 import com.eugnis.easylearningofpaintings.data.DatabaseManager;
+import com.simplify.ink.InkView;
 
 import java.util.Locale;
 

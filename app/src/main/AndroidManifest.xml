@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eugnis.easylearningofpaintings">
+    package="com.eugnis.easylearningofpaintings"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-sdk tools:overrideLibrary="com.simplify.ink"/>
 
     <application
         android:name=".app.App"
@@ -25,6 +27,11 @@
             android:name=".CatalogActivity"
             android:label="@string/title_activity_articles_select"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DrawGameActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GuessGameActivity"></activity>
     </application>
+
+
 
 </manifest>

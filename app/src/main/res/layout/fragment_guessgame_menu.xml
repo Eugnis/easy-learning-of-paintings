@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    tools:context="com.eugnis.easylearningofpaintings.MainMenuFragment">
+    tools:context="com.eugnis.easylearningofpaintings.GuessGameMenuFragment">
 
     <ImageView
         android:id="@+id/bg_menu"
@@ -31,59 +30,33 @@
 
 
             <Button
-                android:id="@+id/menubtn_randomArticle"
+                android:id="@+id/quizGameStart_btn"
                 android:layout_width="fill_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_randomArticle"
+                android:text="@string/quizgame_btn"
                 android:background="@drawable/menu_btn"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="18sp"
                 android:lineSpacingExtra="10sp"
                 android:fontFamily="monospace"
                 android:textStyle="normal|bold"
-                android:onClick="openRandomArticle" />
+                android:onClick="openGuessGame" />
 
             <Button
-                android:id="@+id/menubtn_styles"
+                android:id="@+id/drawGameStart_btn"
                 android:layout_width="fill_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_styles"
+                android:text="@string/drawgame_btn"
                 android:background="@drawable/menu_btn"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="18sp"
                 android:lineSpacingExtra="10sp"
                 android:fontFamily="monospace"
                 android:textStyle="normal|bold"
-                android:onClick="openStyles" />
+                android:onClick="openDrawGame" />
 
-            <Button
-                android:id="@+id/menubtn_painters"
-                android:layout_width="fill_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/menu_painters"
-                android:background="@drawable/menu_btn"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="18sp"
-                android:lineSpacingExtra="10sp"
-                android:fontFamily="monospace"
-                android:textStyle="normal|bold"
-                android:onClick="openPainters" />
-
-            <Button
-                android:id="@+id/menubtn_guessgame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/menu_guessGame"
-                android:background="@drawable/menu_btn"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="18sp"
-                android:lineSpacingExtra="10sp"
-                android:fontFamily="monospace"
-                android:textStyle="normal|bold"
-                android:onClick="openGuessGameMenu" />
 
         </LinearLayout>
 
