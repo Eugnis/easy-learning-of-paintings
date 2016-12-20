@@ -41,7 +41,6 @@
                 android:textStyle="normal|bold"
                 android:textSize="24sp"
                 android:textAllCaps="true"
-                android:layout_marginBottom="20dp"
                 android:textAlignment="center" />
 
             <TextView
@@ -54,7 +53,10 @@
                 android:textSize="18sp"
                 android:textColor="@color/colorTextPainter"
                 android:background="@color/bgpics"
-                android:padding="10dp" />
+                android:paddingBottom="15dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:elevation="1dp" />
 
 
             <TextView

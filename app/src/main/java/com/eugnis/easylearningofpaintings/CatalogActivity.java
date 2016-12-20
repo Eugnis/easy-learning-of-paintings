@@ -206,13 +206,13 @@ public class CatalogActivity extends AppCompatActivity
         if (selected instanceof Painter) {
             Painter p = (Painter)selected;
             paintingsList= paintingsRepo.getFilteredPaintings(Painter.TAG, p.getPainterID());
-            toolbarTitle.setText(String.format("%s%s", getString(R.string.painter), p.getName()));
+            toolbarTitle.setText(p.getName());
             showAbout.setVisibility(View.VISIBLE);
         }
         else if (selected instanceof Style){
             Style s = (Style)selected;
             paintingsList= paintingsRepo.getFilteredPaintings(Style.TAG, s.getStyleID());
-            toolbarTitle.setText(String.format("%s%s", getString(R.string.stytle), s.getName()));
+            toolbarTitle.setText(s.getName());
             showAbout.setVisibility(View.VISIBLE);
         }
         else paintingsList= paintingsRepo.getPaintings();
