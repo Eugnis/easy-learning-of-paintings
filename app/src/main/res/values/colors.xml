@@ -9,6 +9,7 @@
     <color name="colorTextPainter">#4b2e19</color>
     <color name="TopBar">#6b3f1b</color>
     <color name="search_or">#8ef0cb86</color>
-    <color name="barcolor">#ca372435</color>
-    <color name="barcolor2">#bb461b0b</color>
+    <color name="barcolor">#9b7e51</color>
+    <color name="barcolor2">#b32b190b</color>
+    <color name="bgpics">#95efca85</color>
 </resources>

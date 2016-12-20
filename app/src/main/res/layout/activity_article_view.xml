@@ -10,7 +10,7 @@
     android:background="@drawable/bg2">
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:fillViewport="false"
@@ -38,8 +38,10 @@
                 android:id="@+id/articleName"
                 android:layout_weight="1"
                 android:textStyle="normal|bold"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textAllCaps="true"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +51,9 @@
                 android:text="dffhuhuhhuh"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="18sp"
-                android:textColor="@color/colorTextPainter" />
+                android:textColor="@color/colorTextPainter"
+                android:background="@color/bgpics"
+                android:padding="10dp" />
 
 
             <TextView
@@ -59,7 +63,10 @@
                 android:id="@+id/textAdditional"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="normal|bold"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="@drawable/bgtxt"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorButtonMenu" />
 
             <GridView
                 android:id="@+id/gridViewCatalog"
@@ -71,7 +78,8 @@
                 android:horizontalSpacing="5dp"
                 android:stretchMode="columnWidth"
                 android:gravity="center"
-                />
+                android:background="@drawable/menu_btn"
+                android:paddingLeft="5dp" />
 
         </LinearLayout>
     </ScrollView>

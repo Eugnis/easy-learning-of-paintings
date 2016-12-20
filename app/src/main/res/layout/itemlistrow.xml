@@ -4,13 +4,14 @@
     android:layout_width="fill_parent">
 
 
-        <TextView android:textColor="@color/colorButtonMenu"
+        <TextView
             android:id="@+id/painterList_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_weight="1"
-            android:typeface="monospace" />
+            android:typeface="monospace"
+            android:textSize="18sp"
+            android:textColor="@color/colorButtonMenu" />
 
         <TextView android:textColor="@color/colorButtonMenu"
             android:id="@+id/painterList_years"
