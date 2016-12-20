@@ -5,4 +5,10 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="colorButtonMenu">#f0cb86</color>
+    <color name="colorTextPainter">#4b2e19</color>
+    <color name="TopBar">#6b3f1b</color>
+    <color name="search_or">#8ef0cb86</color>
+    <color name="barcolor">#ca372435</color>
+    <color name="barcolor2">#bb461b0b</color>
 </resources>

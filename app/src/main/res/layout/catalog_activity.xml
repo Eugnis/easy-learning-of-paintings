@@ -18,15 +18,15 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        >
+        android:background="@android:color/transparent">
 
         <Button
             android:id="@+id/btn_backToMenu"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:text="@string/backToMenu_btn"
-            android:background="@drawable/menu_btn"
-            android:textColor="@android:color/holo_blue_dark"
+            android:background="@color/barcolor2"
+            android:textColor="@color/colorButtonMenu"
             android:textSize="18sp"
             android:textStyle="normal|bold"
             android:onClick="backToMenu" />
@@ -37,15 +37,20 @@
             android:layout_height="50dp"
             android:layout_marginTop="52dp"
             android:inputType="textPersonName"
+            android:textColorHint="?attr/actionMenuTextColor"
             android:ems="10"
             android:id="@+id/txtSearch_left"
-            android:hint="@string/search_hint" />
+            android:hint="@string/search_hint"
+            android:background="@color/search_or"
+            android:textColor="@android:color/white" />
 
         <ListView
             android:id="@+id/optionsList"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="102dp">
+            android:layout_height="match_parent"
+            android:layout_marginTop="102dp"
+            android:background="@color/barcolor2"
+            android:cacheColorHint="@color/barcolor">
         </ListView>
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

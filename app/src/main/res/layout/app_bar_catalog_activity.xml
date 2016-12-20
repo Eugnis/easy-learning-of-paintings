@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.eugnis.easylearningofpaintings.CatalogActivity">
+    tools:context="com.eugnis.easylearningofpaintings.CatalogActivity"
+    android:background="@drawable/bg4">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:id="@+id/catalog_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/TopBar"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             android:weightSum="1">
             <LinearLayout
@@ -32,7 +33,8 @@
                     android:layout_weight="0.68"
                     android:textSize="16sp"
                     android:textColor="#ffffff"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textAllCaps="true" />
 
                 <Button
                     android:background="@drawable/ic_help_outline_black_24dp"

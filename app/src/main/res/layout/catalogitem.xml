@@ -16,5 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView_catalogDescription"
         android:textAlignment="center"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        android:text="ygyghjyg"
+        android:textColor="@android:color/background_light" />
 </LinearLayout>

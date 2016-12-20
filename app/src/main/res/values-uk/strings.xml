@@ -4,7 +4,7 @@
     <string name="menu_randomArticle">Випадкова стаття</string>
     <string name="menu_styles">Стилі живопису</string>
     <string name="menu_painters">Художники</string>
-    <string name="menu_guessGame">Гра \"Вгадай картину\"</string>
+    <string name="menu_guessGame">Вікторина</string>
     <string name="title_activity_articles_select">Перегляд статей</string>
     <string name="styleText">"Стиль: "</string>
     <string name="search_hint">Пошук...</string>
