@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name" translatable="false">Easy Learning of Paintings</string>
-    <string name="action_settings">Settings</string>
-    <string name="menu_randomArticle">Random article</string>
-    <string name="menu_styles">Painting styles</string>
-    <string name="menu_painters">Painters</string>
-    <string name="menu_guessGame">Quiz</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="menu_randomArticle">Випадкова стаття</string>
+    <string name="menu_styles">Стилі живопису</string>
+    <string name="menu_painters">Художники</string>
+    <string name="menu_guessGame">Вікторина</string>
+    <string name="title_activity_articles_select">Перегляд статей</string>
+    <string name="styleText">"Стиль: "</string>
+    <string name="search_hint">Пошук...</string>
+    <string name="painter">"Художник: "</string>
+    <string name="stytle">"Стиль: "</string>
+    <string name="quizgame_btn">QuizGame</string>
+    <string name="drawgame_btn">Малевалка</string>
+    <string name="exitMessage">Для виходу натисніть НАЗАД ще раз</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -13,16 +21,12 @@
     <string name="backToMenu_btn">Назад в меню</string>
     <string name="title_article_list">Articles</string>
     <string name="title_article_detail">Article Detail</string>
-    <string name="title_activity_articles_select">ArticlesSelectActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="styleText">"Стиль: "</string>
     <string name="title_activity_test">test</string>
-    <string name="search_hint">Пошук...</string>
-    <string name="painter">"Художник: "</string>
-    <string name="stytle">"Стиль: "</string>
-    <string name="quizgame_btn">QuizGame</string>
-    <string name="drawgame_btn">Малевалка</string>
-    <string name="exitMessage">Для виходу натисніть НАЗАД ще раз</string>
+
+    <string name="title_activity_fullscreen_picture_view">FullscreenPictureView</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -41,6 +41,7 @@ public class Painting {
     private String painterName;
     private Painter painter;
     private Style style;
+    private String pictureLink;
 
     public int getPaintingID(){
         return paintingID;
@@ -90,14 +91,24 @@ public class Painting {
         this.about = about;
     }
 
+    public String getPictureLink(){
+        return pictureLink;
+    }
+
+    public void setPictureLink(String pictureName){
+
+        this.pictureLink = "pictures/"+ painter.getFolder() +"/paintings/"+pictureName;
+    }
+
     public Bitmap getPicture(){
+
         return picture;
     }
 
-    public void setPicture(String pictureName){
+    public void setPicture(){
         AssetManager assetManager = getContext().getAssets();
         try {
-            InputStream is = assetManager.open("pictures/"+ painter.getFolder() +"/paintings/"+pictureName);
+            InputStream is = assetManager.open(this.getPictureLink());
             this.picture = BitmapFactory.decodeStream(is);
         } catch (IOException e) {
             e.printStackTrace();

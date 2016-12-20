@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.eugnis.easylearningofpaintings.R;
 import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
+import com.eugnis.easylearningofpaintings.helpers.ImageGridHandler;
 
 import java.util.List;
 
@@ -52,7 +53,11 @@ public class CatalogAdapter extends ArrayAdapter<Painting> {
             TextView tt1 = (TextView) v.findViewById(R.id.textView_catalogDescription);
             ImageView img = (ImageView) v.findViewById(R.id.imageView_catalog);
 
-            img.setImageBitmap(p.getPicture());
+            //img.setImageBitmap(p.getPicture());
+            //ImageView image = (ImageView)view.findViewById(R.id.img_item);
+            img.setImageBitmap(null);
+            ImageGridHandler handler = new ImageGridHandler(getContext(), img);
+            handler.execute(p.getPictureLink(), "250", "250");
             tt1.setText("\"" + p.getName()+"\"\n" + p.getPainter().getName());
 
             //imageView = new ImageView(getContext());

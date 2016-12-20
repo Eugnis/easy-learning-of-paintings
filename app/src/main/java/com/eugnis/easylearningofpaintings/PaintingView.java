@@ -1,6 +1,7 @@
 package com.eugnis.easylearningofpaintings;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,8 @@ import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
 import com.eugnis.easylearningofpaintings.data.model.Style;
 import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
+import com.eugnis.easylearningofpaintings.helpers.ImageGridHandler;
+import com.eugnis.easylearningofpaintings.helpers.ImageHelper;
 
 import static com.eugnis.easylearningofpaintings.CatalogActivity.ARTICLE_ID;
 import static com.eugnis.easylearningofpaintings.CatalogActivity.ARTICLE_TYPE;
@@ -24,7 +27,7 @@ public class PaintingView extends AppCompatActivity {
     ImageView pictureView;
     TextView descriptionView;
     TextView paintingName;
-    //TextView authorName;
+    TextView authorName;
     TextView styleName;
     Painting painting;
 
@@ -34,6 +37,8 @@ public class PaintingView extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
+        //if (pictureView!=null)
+        //    ((BitmapDrawable)pictureView.getDrawable()).getBitmap().recycle();
         fillData(intent);
     }
 
@@ -44,7 +49,7 @@ public class PaintingView extends AppCompatActivity {
 
         descriptionView = (TextView) findViewById(R.id.pictureDescription);
         paintingName = (TextView) findViewById(R.id.paintingName);
-        //authorName = (TextView) findViewById(R.id.authorName);
+        authorName = (TextView) findViewById(R.id.authorName);
         styleName = (TextView) findViewById(R.id.styleName);
         pictureView = (ImageView) findViewById(R.id.pictureView);
         Intent intent = getIntent();
@@ -62,16 +67,22 @@ public class PaintingView extends AppCompatActivity {
 //        Log.d(TAG, intent.getExtras().getString(CatalogActivity.PICTURE_ID));
 
         descriptionView.setText(painting.getAbout());
-        paintingName.setText("\"" + painting.getName() + "\" " + painting.getPainter().getName());
-        //authorName.setText(painting.getPainter().getName());
+        paintingName.setText("\"" + painting.getName() + "\"");
+        authorName.setText(painting.getPainter().getName());
         styleName.setText("Стиль: "+ painting.getStyle().getName());
-        pictureView.setImageBitmap(painting.getPicture());
+        ImageGridHandler handler = new ImageGridHandler(this, pictureView);
+        handler.execute(painting.getPictureLink(), "250", "250");
+        pictureView.setMaxHeight(1000);
+        pictureView.setAdjustViewBounds(true);
 
 
         pictureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //fullScreen();
+                Intent intent = new Intent(PaintingView.this, FullscreenPictureView.class);
+                intent.putExtra("ImageFileLink", painting.getPictureLink());
+                startActivity(intent);
+
             }
         });
 
@@ -97,6 +108,12 @@ public class PaintingView extends AppCompatActivity {
         Log.d(TAG, "Open painter");
 
         startActivity(intent);
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+
+        pictureView.setImageDrawable(null);
     }
 
 

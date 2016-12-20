@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:scaleType="fitXY"
+                android:maxHeight="250dp"
                 android:adjustViewBounds="true"
                 android:id="@+id/pictureView" />
 

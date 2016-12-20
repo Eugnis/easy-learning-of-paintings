@@ -115,9 +115,11 @@ public class PaintingsRepo {
 
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
-                painting.setPicture(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
+                painting.setPictureLink(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
                 painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
                 painting.setPaintingID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PaintingID)));
+
+                //painting.setPicture();
 
                 paintingList.add(painting);
             } while (cursor.moveToNext());
@@ -176,8 +178,10 @@ public class PaintingsRepo {
 
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
-                painting.setPicture(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
+                painting.setPictureLink(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
                 painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
+
+                //painting.setPicture();
             }while(cursor.moveToNext());
         }
         cursor.close();
@@ -241,9 +245,11 @@ public class PaintingsRepo {
 
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
-                painting.setPicture(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
+                painting.setPictureLink(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
                 painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
                 painting.setPaintingID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PaintingID)));
+
+                //painting.setPicture();
 
                 paintingList.add(painting);
             } while (cursor.moveToNext());

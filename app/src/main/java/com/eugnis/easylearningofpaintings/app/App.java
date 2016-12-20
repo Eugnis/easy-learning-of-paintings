@@ -26,12 +26,12 @@ public class  App extends Application {
         dbHelper = new DBHelper();
         DatabaseManager.initializeInstance(dbHelper);
 
-        Locale locale = new Locale("uk");
-        Locale.setDefault(locale);
-        Configuration config = getBaseContext().getResources().getConfiguration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        //Locale locale = new Locale("uk");
+        //Locale.setDefault(locale);
+        //Configuration config = getBaseContext().getResources().getConfiguration();
+        //config.locale = locale;
+        //getBaseContext().getResources().updateConfiguration(config,
+        //        getBaseContext().getResources().getDisplayMetrics());
 
     }
 

@@ -32,6 +32,7 @@ public class Painter {
     private String country;
     private String folder;
     private Bitmap picture;
+    private String pictureLink;
 
     public int getPainterID(){
         return painterID;
@@ -79,7 +80,15 @@ public class Painter {
 
     public void setFolder(String folder){
         this.folder = folder;
+        this.pictureLink = "pictures/"+ folder +"/main.jpg";
+
     }
+
+    public String getPictureLink(){
+        return pictureLink;
+    }
+
+
 
     public Bitmap getPicture(){
         return picture;

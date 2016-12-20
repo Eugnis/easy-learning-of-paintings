@@ -1,6 +1,7 @@
 package com.eugnis.easylearningofpaintings;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +18,8 @@ import com.eugnis.easylearningofpaintings.data.model.Style;
 import com.eugnis.easylearningofpaintings.data.repo.PaintersRepo;
 import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
 import com.eugnis.easylearningofpaintings.data.repo.StylesRepo;
+import com.eugnis.easylearningofpaintings.helpers.ImageGridHandler;
+import com.eugnis.easylearningofpaintings.helpers.ImageHelper;
 
 import java.util.List;
 
@@ -47,6 +50,9 @@ public class ArticleView extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
+        //if (pictureView!=null)
+        //    ((BitmapDrawable)pictureView.getDrawable()).getBitmap().recycle();
+
         fillData(intent);
 
     }
@@ -66,9 +72,6 @@ public class ArticleView extends AppCompatActivity {
         //PaintingsRepo paintingsRepo = new PaintingsRepo();
         Intent intent = getIntent();
         fillData(intent);
-
-
-
     }
 
     private void fillData(Intent intent){
@@ -79,9 +82,15 @@ public class ArticleView extends AppCompatActivity {
             PaintersRepo paintersRepo = new PaintersRepo();
             painter = paintersRepo.getPainter(articleID);
             articleName.setText(painter.getName() + " " + painter.getCountry() + "\n" + painter.getYears());
-            painter.setPicture();
+            //painter.setPicture();
             pictureView.setVisibility(View.VISIBLE);
-            pictureView.setImageBitmap(painter.getPicture());
+            //pictureView.setImageBitmap(painter.getPicture());
+
+            ImageGridHandler handler = new ImageGridHandler(this, pictureView);
+            handler.execute(painter.getPictureLink(), "100", "100");
+            //pictureView.setImageBitmap(ImageHelper.decodeSampledBitmapFromAssets(painter.getPictureLink(),100,100));
+            //pictureView.setMaxHeight(1000);
+            pictureView.setAdjustViewBounds(true);
             articleDescription.setText(painter.getAbout());
             textAdditional.setText("Картини цього художника:");
             fillCatalog(painter);
@@ -131,6 +140,14 @@ public class ArticleView extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        pictureView.setImageDrawable(null);
     }
 
 
