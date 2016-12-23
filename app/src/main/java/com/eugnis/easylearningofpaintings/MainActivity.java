@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openGuessGame(View view) {
-        Intent intent = new Intent(this, GuessGameActivity.class);
+        Intent intent = new Intent(this, QuizGameActivity.class);
         startActivity(intent);
     }
 

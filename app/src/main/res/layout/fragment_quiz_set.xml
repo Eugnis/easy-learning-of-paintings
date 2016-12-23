@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.eugnis.easylearningofpaintings.QuizSetFragment"
+    android:id="@+id/quizSetFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:text="Художники"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton2"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Стилі"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton"
+            android:layout_weight="1" />
+    </RadioGroup>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/typeChooseSpinner" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/qQuantity"
+        android:max="50"
+        />
+
+    <Button
+        android:text="Почати"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startQuiz"
+        android:onClick="startQuiz" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+</LinearLayout>

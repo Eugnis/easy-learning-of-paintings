@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.eugnis.easylearningofpaintings.SingleQuizFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="346dp"
+            android:id="@+id/quizPicture"
+            android:background="@drawable/bg2"
+            android:scaleType="centerCrop"
+            android:layout_margin="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="buttonAnswer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAnswer3"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="buttonAnswer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAnswer1"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:text="buttonAnswer4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAnswer4"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="buttonAnswer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAnswer2"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent" android:layout_height="wrap_content" >
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:max="100" />
+
+            <TextView
+                android:id="@+id/progressCountText"
+                android:text="Назад"
+                android:layout_alignLeft="@id/progressBar" android:layout_alignTop="@id/progressBar"
+                android:layout_alignRight="@id/progressBar" android:layout_alignBottom="@id/progressBar"
+                android:background="@android:color/transparent"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textAlignment="center"
+                android:textStyle="normal|bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Назад"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/backQuizBtn"
+                android:layout_weight="1"/>
+
+            <Button
+                    android:text="Вперед"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/forwardQuizBtn"
+                    android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

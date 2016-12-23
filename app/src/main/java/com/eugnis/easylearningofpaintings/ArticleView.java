@@ -122,7 +122,7 @@ public class ArticleView extends AppCompatActivity {
             paintingsList= paintingsRepo.getFilteredPaintings(Style.TAG, s.getStyleID());
 
         }
-        else paintingsList= paintingsRepo.getPaintings();
+        else paintingsList= paintingsRepo.getPaintings(false, null);
 
         gridViewCatalog = (GridView) findViewById(R.id.gridViewCatalog);
         CatalogAdapter paintingsCatalogAdapter = new CatalogAdapter(this, R.layout.itemlistrow, paintingsList);

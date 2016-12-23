@@ -215,7 +215,7 @@ public class CatalogActivity extends AppCompatActivity
             toolbarTitle.setText(s.getName());
             showAbout.setVisibility(View.VISIBLE);
         }
-        else paintingsList= paintingsRepo.getPaintings();
+        else paintingsList= paintingsRepo.getPaintings(false, null);
 
         gridViewCatalog = (GridView) findViewById(R.id.gridViewCatalog);
         paintingsCatalogAdapter = new CatalogAdapter(this, R.layout.itemlistrow, paintingsList);

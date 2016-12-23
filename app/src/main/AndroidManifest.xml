@@ -31,7 +31,7 @@
         <activity
             android:name=".DrawGameActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".GuessGameActivity" />
+        <activity android:name=".QuizGameActivity" />
         <activity
             android:name=".FullscreenPictureView"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -67,7 +67,7 @@ public class PaintingsRepo {
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Painting> getPaintings(){
+    public List<Painting> getPaintings(boolean random, Integer count){
         Painting painting;
         List<Painting> paintingList = new ArrayList<>();
 
@@ -91,6 +91,8 @@ public class PaintingsRepo {
                 + " INNER JOIN " + Painter.TABLE + " Painter ON Painter." + Painter.KEY_PainterID + " =  Painting." + Painting.KEY_PainterID
                 + " INNER JOIN " + Style.TABLE + " Style ON Style." + Style.KEY_StyleID + " =  Painting." + Painting.KEY_StyleID
                 ;
+        if(random) selectQuery = selectQuery + " ORDER BY RANDOM()";
+        if(count!=null) selectQuery = selectQuery + " LIMIT " + count;
 
         Log.d(TAG, selectQuery);
         Cursor cursor = db.rawQuery(selectQuery, null);
