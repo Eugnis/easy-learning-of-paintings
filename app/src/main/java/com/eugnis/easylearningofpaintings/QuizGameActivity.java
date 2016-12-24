@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
@@ -78,6 +79,7 @@ public class QuizGameActivity extends AppCompatActivity {
             resultText+="\nрезултвт "+countGood+"/"+quantity;
             QuizSetFragment qsf = new QuizSetFragment();
             //qsf.setResultText(resultText);
+            if (countGood<quantity) Toast.makeText(this, "Лошара! Всего " + countGood + " из " + quantity, Toast.LENGTH_LONG).show();
             Log.d(TAG, resultText);
             return null;
         }

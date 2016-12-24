@@ -80,7 +80,7 @@ public class Painter {
 
     public void setFolder(String folder){
         this.folder = folder;
-        this.pictureLink = "pictures/"+ folder +"/main.jpg";
+        this.pictureLink = "file:///android_asset/pictures/"+ folder +"/main.jpg";
 
     }
 

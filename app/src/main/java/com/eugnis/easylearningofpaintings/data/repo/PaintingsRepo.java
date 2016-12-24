@@ -117,6 +117,7 @@ public class PaintingsRepo {
 
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
+                painting.setYear(cursor.getString(cursor.getColumnIndex(Painting.KEY_Year)));
                 painting.setPictureLink(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
                 painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
                 painting.setPaintingID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PaintingID)));
@@ -180,6 +181,7 @@ public class PaintingsRepo {
 
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
+                painting.setYear(cursor.getString(cursor.getColumnIndex(Painting.KEY_Year)));
                 painting.setPictureLink(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
                 painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
 
@@ -247,6 +249,7 @@ public class PaintingsRepo {
 
                 painting.setName(cursor.getString(cursor.getColumnIndex(Painting.KEY_Name)));
                 painting.setAbout(cursor.getString(cursor.getColumnIndex(Painting.KEY_About)));
+                painting.setYear(cursor.getString(cursor.getColumnIndex(Painting.KEY_Year)));
                 painting.setPictureLink(cursor.getString(cursor.getColumnIndex(Painting.KEY_Picture)));
                 painting.setWatched((cursor.getInt(cursor.getColumnIndex(Painting.KEY_Watched))) != 0);
                 painting.setPaintingID(cursor.getInt(cursor.getColumnIndex(Painting.KEY_PaintingID)));

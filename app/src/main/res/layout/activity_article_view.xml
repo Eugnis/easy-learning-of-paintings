@@ -12,14 +12,14 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="false"
         android:orientation="vertical"
         android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:orientation="vertical">
 
             <ImageView
@@ -71,10 +71,10 @@
                 android:layout_marginTop="20dp"
                 android:textColor="@color/colorButtonMenu" />
 
-            <GridView
+            <com.eugnis.easylearningofpaintings.custom.CustomCatalogGridView
                 android:id="@+id/gridViewCatalog"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:columnWidth="85dp"
                 android:numColumns="auto_fit"
                 android:verticalSpacing="5dp"

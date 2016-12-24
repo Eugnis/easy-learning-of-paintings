@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
 import com.eugnis.easylearningofpaintings.data.model.Quiz;
 
@@ -159,8 +160,9 @@ public class SingleQuizFragment extends Fragment {
             if (forward) countQuiz++;
             else countQuiz--;
 
-            curQuiz.getQuizObj().setPicture();
-            quizPicture.setImageBitmap(curQuiz.getQuizObj().getPicture());
+            //curQuiz.getQuizObj().setPicture();
+            //quizPicture.setImageBitmap(curQuiz.getQuizObj().getPicture());
+            Glide.with(this).load(curQuiz.getQuizObj().getPictureLink()).crossFade().fitCenter().into(quizPicture);
 
             answerOptions = curQuiz.getAnswerOptions();
             buttonAnswer1.setText("\""+answerOptions.get(0).getName() + "\"\n" + answerOptions.get(0).getPainter().getName());

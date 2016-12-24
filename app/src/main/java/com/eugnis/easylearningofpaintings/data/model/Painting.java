@@ -97,7 +97,7 @@ public class Painting {
 
     public void setPictureLink(String pictureName){
 
-        this.pictureLink = "pictures/"+ painter.getFolder() +"/paintings/"+pictureName;
+        this.pictureLink = "file:///android_asset/pictures/"+ painter.getFolder() +"/paintings/"+pictureName;
     }
 
     public Bitmap getPicture(){

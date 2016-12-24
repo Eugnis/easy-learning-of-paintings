@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -109,14 +114,9 @@ public class FullscreenPictureView extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        AssetManager assetManager = getContext().getAssets();
-        try {
-            InputStream is = assetManager.open(intent.getExtras().getString("ImageFileLink"));
-            imageView.setImageBitmap(BitmapFactory.decodeStream(is));
-            mAttacher = new PhotoViewAttacher(imageView);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Glide.with(this).load(intent.getExtras().getString("ImageFileLink")).crossFade().thumbnail(0.1f).into(imageView);
+
+        mAttacher = new PhotoViewAttacher(imageView);
 
 
         // Set up the user interaction to manually show or hide the system UI.

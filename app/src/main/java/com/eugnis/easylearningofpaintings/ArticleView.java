@@ -1,25 +1,23 @@
 package com.eugnis.easylearningofpaintings;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.eugnis.easylearningofpaintings.adapters.CatalogAdapter;
+import com.eugnis.easylearningofpaintings.custom.CustomCatalogGridView;
 import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
 import com.eugnis.easylearningofpaintings.data.model.Style;
 import com.eugnis.easylearningofpaintings.data.repo.PaintersRepo;
 import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
 import com.eugnis.easylearningofpaintings.data.repo.StylesRepo;
-import com.eugnis.easylearningofpaintings.helpers.ImageGridHandler;
-import com.eugnis.easylearningofpaintings.helpers.ImageHelper;
 
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class ArticleView extends AppCompatActivity {
     String articleType;
     String articleID;
 
-    GridView gridViewCatalog;
+    CustomCatalogGridView gridViewCatalog;
 
     boolean isImageFitToScreen;
 
@@ -65,7 +63,7 @@ public class ArticleView extends AppCompatActivity {
         articleName = (TextView) findViewById(R.id.articleName);
         articleDescription = (TextView) findViewById(R.id.articleDescription);
         textAdditional = (TextView) findViewById(R.id.textAdditional);
-        gridViewCatalog = (GridView) findViewById(R.id.gridViewCatalog);
+        gridViewCatalog = (CustomCatalogGridView) findViewById(R.id.gridViewCatalog);
         pictureView = (ImageView) findViewById(R.id.pictureView);
 
 
@@ -86,8 +84,9 @@ public class ArticleView extends AppCompatActivity {
             pictureView.setVisibility(View.VISIBLE);
             //pictureView.setImageBitmap(painter.getPicture());
 
-            ImageGridHandler handler = new ImageGridHandler(this, pictureView);
-            handler.execute(painter.getPictureLink(), "100", "100");
+            //ImageGridHandler handler = new ImageGridHandler(this, pictureView);
+            //handler.execute(painter.getPictureLink(), "100", "100");
+            Glide.with(this).load(painter.getPictureLink()).override(250,300).crossFade().thumbnail(0.1f).into(pictureView);
             //pictureView.setImageBitmap(ImageHelper.decodeSampledBitmapFromAssets(painter.getPictureLink(),100,100));
             //pictureView.setMaxHeight(1000);
             pictureView.setAdjustViewBounds(true);
@@ -124,7 +123,7 @@ public class ArticleView extends AppCompatActivity {
         }
         else paintingsList= paintingsRepo.getPaintings(false, null);
 
-        gridViewCatalog = (GridView) findViewById(R.id.gridViewCatalog);
+        gridViewCatalog = (CustomCatalogGridView) findViewById(R.id.gridViewCatalog);
         CatalogAdapter paintingsCatalogAdapter = new CatalogAdapter(this, R.layout.itemlistrow, paintingsList);
         gridViewCatalog.setAdapter(paintingsCatalogAdapter);
 

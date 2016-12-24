@@ -2,6 +2,7 @@ package com.eugnis.easylearningofpaintings;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,12 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
 import com.eugnis.easylearningofpaintings.data.model.Style;
 import com.eugnis.easylearningofpaintings.data.repo.PaintingsRepo;
-import com.eugnis.easylearningofpaintings.helpers.ImageGridHandler;
-import com.eugnis.easylearningofpaintings.helpers.ImageHelper;
 
 import static com.eugnis.easylearningofpaintings.CatalogActivity.ARTICLE_ID;
 import static com.eugnis.easylearningofpaintings.CatalogActivity.ARTICLE_TYPE;
@@ -67,11 +67,13 @@ public class PaintingView extends AppCompatActivity {
 //        Log.d(TAG, intent.getExtras().getString(CatalogActivity.PICTURE_ID));
 
         descriptionView.setText(painting.getAbout());
-        paintingName.setText("\"" + painting.getName() + "\"");
+        paintingName.setText("\"" + painting.getName() + "\"\n" + painting.getYear());
         authorName.setText(painting.getPainter().getName());
         styleName.setText("Стиль: "+ painting.getStyle().getName());
-        ImageGridHandler handler = new ImageGridHandler(this, pictureView);
-        handler.execute(painting.getPictureLink(), "250", "250");
+        //ImageGridHandler handler = new ImageGridHandler(this, pictureView);
+        //handler.execute(painting.getPictureLink(), "250", "250");
+        Glide.with(this).load(painting.getPictureLink()).crossFade().thumbnail(0.1f).into(pictureView);
+
         pictureView.setMaxHeight(1000);
         pictureView.setAdjustViewBounds(true);
 
@@ -82,6 +84,10 @@ public class PaintingView extends AppCompatActivity {
                 Intent intent = new Intent(PaintingView.this, FullscreenPictureView.class);
                 intent.putExtra("ImageFileLink", painting.getPictureLink());
                 startActivity(intent);
+                //Intent intent = new Intent();
+                //intent.setAction(Intent.ACTION_VIEW);
+                //intent.setDataAndType(Uri.parse(painting.getPictureLink()), "image/*");
+                //startActivity(intent);
 
             }
         });

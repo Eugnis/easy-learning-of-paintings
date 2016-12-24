@@ -11,10 +11,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.eugnis.easylearningofpaintings.R;
 import com.eugnis.easylearningofpaintings.data.model.Painter;
 import com.eugnis.easylearningofpaintings.data.model.Painting;
-import com.eugnis.easylearningofpaintings.helpers.ImageGridHandler;
 
 import java.util.List;
 
@@ -46,24 +46,31 @@ public class CatalogAdapter extends ArrayAdapter<Painting> {
             v = vi.inflate(R.layout.catalogitem, null);
         }
 
-        ImageView imageView;
+        //ImageView imageView;
         Painting p = getItem(position);
         if (p != null) {
 
-            TextView tt1 = (TextView) v.findViewById(R.id.textView_catalogDescription);
+            TextView tt1 = (TextView) v.findViewById(R.id.textView_catalogImageName);
+            TextView tt2 = (TextView) v.findViewById(R.id.textView_catalogImageAuthor);
             ImageView img = (ImageView) v.findViewById(R.id.imageView_catalog);
+            //img.setImageBitmap(null);
 
-            //img.setImageBitmap(p.getPicture());
-            //ImageView image = (ImageView)view.findViewById(R.id.img_item);
-            img.setImageBitmap(null);
-            ImageGridHandler handler = new ImageGridHandler(getContext(), img);
-            handler.execute(p.getPictureLink(), "250", "250");
-            tt1.setText("\"" + p.getName()+"\"\n" + p.getPainter().getName());
+            Glide
+                    .with(v.getContext())
+                    .load(p.getPictureLink())
+                    .centerCrop()
+                    .override(250, 250)
+                    .placeholder(R.drawable.progress_animation)
+                    .crossFade()
+                    .into(img);
 
-            //imageView = new ImageView(getContext());
-            //imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
-            //imageView.setScaleType(ImageView.ScaleType.CENTER);
-            //imageView.setPadding(8, 8, 8, 8);
+
+            //img.setImageBitmap(null);
+            //ImageGridHandler handler = new ImageGridHandler(getContext(), img);
+            //handler.execute(p.getPictureLink(), "250", "250");
+            tt1.setText("\"" + p.getName()+"\"");
+            tt2.setText(p.getPainter().getName());
+
         }
 
         return v;
