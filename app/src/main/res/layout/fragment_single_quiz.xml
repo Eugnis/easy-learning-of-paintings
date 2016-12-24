@@ -89,26 +89,12 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:text="Назад"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/backQuizBtn"
-                android:layout_weight="1"/>
-
-            <Button
-                    android:text="Вперед"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/forwardQuizBtn"
-                    android:layout_weight="1"/>
-
-        </LinearLayout>
+        <Button
+                android:text="Далі"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/forwardQuizBtn"
+            android:layout_gravity="end" />
 
     </LinearLayout>
 

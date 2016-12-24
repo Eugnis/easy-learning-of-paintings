@@ -26,7 +26,7 @@ public class SingleQuizFragment extends Fragment {
     public static final String TAG = SingleQuizFragment.class.getSimpleName();
 
     ImageView quizPicture;
-    Button buttonAnswer1, buttonAnswer2, buttonAnswer3, buttonAnswer4, backQuizBtn, forwardQuizBtn;
+    Button buttonAnswer1, buttonAnswer2, buttonAnswer3, buttonAnswer4, forwardQuizBtn;
     Quiz curQuiz;
     ProgressBar progressBar;
     TextView progressCountText;
@@ -49,9 +49,7 @@ public class SingleQuizFragment extends Fragment {
         buttonAnswer2 = (Button) v.findViewById(R.id.buttonAnswer2);
         buttonAnswer3 = (Button) v.findViewById(R.id.buttonAnswer3);
         buttonAnswer4 = (Button) v.findViewById(R.id.buttonAnswer4);
-        backQuizBtn = (Button) v.findViewById(R.id.backQuizBtn);
         forwardQuizBtn = (Button) v.findViewById(R.id.forwardQuizBtn);
-        backQuizBtn.setOnClickListener(onAnswerClickListener);
         forwardQuizBtn.setOnClickListener(onAnswerClickListener);
         buttonAnswer1.setOnClickListener(onAnswerClickListener);
         buttonAnswer2.setOnClickListener(onAnswerClickListener);
@@ -69,6 +67,8 @@ public class SingleQuizFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         quizQuantity = ((QuizGameActivity)this.getActivity()).getQuizQuantity();
         progressBar.setMax(quizQuantity);
+        forwardQuizBtn.setEnabled(false);
+
         loadQuiz(true);
 
     }
@@ -92,6 +92,7 @@ public class SingleQuizFragment extends Fragment {
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
+                    forwardQuizBtn.setEnabled(true);
                     break;
                 case R.id.buttonAnswer2:
                     buttonAnswer1.setEnabled(false);
@@ -107,6 +108,7 @@ public class SingleQuizFragment extends Fragment {
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
+                    forwardQuizBtn.setEnabled(true);
                     break;
                 case R.id.buttonAnswer3:
                     buttonAnswer1.setEnabled(false);
@@ -122,6 +124,7 @@ public class SingleQuizFragment extends Fragment {
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
+                    forwardQuizBtn.setEnabled(true);
                     break;
                 case R.id.buttonAnswer4:
                     buttonAnswer1.setEnabled(false);
@@ -137,12 +140,10 @@ public class SingleQuizFragment extends Fragment {
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
+                    forwardQuizBtn.setEnabled(true);
                     break;
                 case R.id.forwardQuizBtn:
                     loadQuiz(true);
-                    break;
-                case R.id.backQuizBtn:
-                    loadQuiz(false);
                     break;
             }
 
@@ -174,6 +175,7 @@ public class SingleQuizFragment extends Fragment {
 
             progressBar.setProgress(countQuiz);
             progressCountText.setText(countQuiz + "/" + quizQuantity);
+            forwardQuizBtn.setEnabled(false);
         }
         buttonAnswer1.setBackgroundResource(android.R.drawable.btn_default);
         buttonAnswer2.setBackgroundResource(android.R.drawable.btn_default);
