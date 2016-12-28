@@ -65,13 +65,19 @@ public class PaintingView extends AppCompatActivity {
         else painting = paintingsRepo.getPainting(intent.getExtras().getString(CatalogActivity.PICTURE_ID));
 
 //        Log.d(TAG, intent.getExtras().getString(CatalogActivity.PICTURE_ID));
-
-        descriptionView.setText(painting.getAbout());
+        if(painting.getAbout()==null) {
+            descriptionView.setVisibility(View.GONE);
+        }
+        else {
+            descriptionView.setVisibility(View.VISIBLE);
+            descriptionView.setText(painting.getAbout());
+        }
         paintingName.setText("\"" + painting.getName() + "\"\n" + painting.getYear());
         authorName.setText(painting.getPainter().getName());
         styleName.setText("Стиль: "+ painting.getStyle().getName());
         //ImageGridHandler handler = new ImageGridHandler(this, pictureView);
         //handler.execute(painting.getPictureLink(), "250", "250");
+
         Glide.with(this).load(painting.getPictureLink()).crossFade().thumbnail(0.1f).into(pictureView);
 
         pictureView.setMaxHeight(1000);

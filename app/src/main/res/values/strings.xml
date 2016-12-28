@@ -10,8 +10,8 @@
     <string name="search_hint">Пошук...</string>
     <string name="painter">"Художник: "</string>
     <string name="stytle">"Стиль: "</string>
-    <string name="quizgame_btn">QuizGame</string>
-    <string name="drawgame_btn">Малевалка</string>
+    <string name="quizgame_btn">Тестування</string>
+    <string name="drawgame_btn">Малювання</string>
     <string name="exitMessage">Для виходу натисніть НАЗАД ще раз</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -29,4 +29,7 @@
     <string name="title_activity_fullscreen_picture_view">FullscreenPictureView</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_draw_compare">DrawCompareActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="saveToGalleryBtntxt">Зберегти у галерею</string>
 </resources>

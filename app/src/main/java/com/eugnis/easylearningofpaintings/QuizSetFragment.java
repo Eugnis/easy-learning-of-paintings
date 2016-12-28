@@ -53,5 +53,4 @@ public class QuizSetFragment extends Fragment {
         super.onStart();
         resultTextView.setText(((QuizGameActivity)this.getActivity()).getResult());
     }
-
 }

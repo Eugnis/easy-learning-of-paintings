@@ -15,6 +15,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,12 +32,23 @@
         <activity
             android:name=".DrawGameActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".QuizGameActivity" />
+        <activity
+            android:name=".QuizGameActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FullscreenPictureView"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen_picture_view"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".DrawCompareActivity"
+            android:label="@string/title_activity_draw_compare"
+            android:parentActivityName=".DrawGameActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eugnis.easylearningofpaintings.DrawGameActivity" />
+        </activity>
     </application>
 
 </manifest>

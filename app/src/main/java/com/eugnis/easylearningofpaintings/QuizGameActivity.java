@@ -65,21 +65,23 @@ public class QuizGameActivity extends AppCompatActivity {
         }
         else {
             int countGood=0;
-            resultText = "RESULT";
+            //resultText = "RESULT";
+            String answers="";
             for (Quiz q: qList)
             {
                 if (q.getAnswerResult()) countGood++;
-                else resultText+="\nПомилка " + q.getQuizObj().getName();
+                else answers+="\nПомилка: \"" + q.getQuizObj().getName() + "\"";
 
 
             }
             Fragment fg = new QuizSetFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.quizMainLayout, fg).commit();
 
-            resultText+="\nрезултвт "+countGood+"/"+quantity;
+            resultText+="\nРезультат "+countGood+"/"+quantity;
+            resultText+=answers;
             QuizSetFragment qsf = new QuizSetFragment();
             //qsf.setResultText(resultText);
-            if (countGood<quantity) Toast.makeText(this, "Лошара! Всего " + countGood + " из " + quantity, Toast.LENGTH_LONG).show();
+            //if (countGood<quantity) Toast.makeText(this, "Лошара! Всего " + countGood + " из " + quantity, Toast.LENGTH_LONG).show();
             Log.d(TAG, resultText);
             return null;
         }
