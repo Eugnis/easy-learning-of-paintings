@@ -3,41 +3,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.eugnis.easylearningofpaintings.QuizSetFragment"
-    android:id="@+id/quizSetFragment">
+    android:id="@+id/quizSetFragment"
+    android:background="@drawable/menu_btn">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <RadioButton
-            android:text="Художники"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton2"
-            android:layout_weight="1" />
-
-        <RadioButton
-            android:text="Стилі"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton"
-            android:layout_weight="1" />
-    </RadioGroup>
-
-    <Spinner
+    <TextView
+        android:text="Кількість питань:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/typeChooseSpinner" />
+        android:id="@+id/choseTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/qQuantity"
         android:max="50"
+        android:layout_gravity="center_horizontal"
         />
 
     <Button
@@ -55,6 +47,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textStyle="normal|bold"
         android:textAlignment="center"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        />
 
 </LinearLayout>

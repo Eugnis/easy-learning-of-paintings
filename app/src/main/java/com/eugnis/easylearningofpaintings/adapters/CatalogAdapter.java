@@ -59,7 +59,7 @@ public class CatalogAdapter extends ArrayAdapter<Painting> {
                     .with(v.getContext())
                     .load(p.getPictureLink())
                     .centerCrop()
-                    .override(250, 250)
+                    .override(100, 100)
                     .placeholder(R.drawable.progress_animation)
                     .crossFade()
                     .into(img);

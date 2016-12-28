@@ -85,11 +85,11 @@ public class SingleQuizFragment extends Fragment {
                     buttonAnswer3.setEnabled(false);
                     buttonAnswer4.setEnabled(false);
                     if (curQuiz.CheckAnswer(answerOptions.get(0))) {
-                        buttonAnswer1.setBackgroundResource(R.drawable.menubut2);
+                        buttonAnswer1.setBackgroundResource(R.color.goodAnswerBtnClr);
                         Log.d(TAG, "Answer OK " + curQuiz.getQuizObj().getName());
                     }
                     else {
-                        buttonAnswer1.setBackgroundResource(android.R.drawable.btn_default);
+                        buttonAnswer1.setBackgroundResource(R.color.badAnswerBtnClr);
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
@@ -101,11 +101,11 @@ public class SingleQuizFragment extends Fragment {
                     buttonAnswer3.setEnabled(false);
                     buttonAnswer4.setEnabled(false);
                     if (curQuiz.CheckAnswer(answerOptions.get(1))) {
-                        buttonAnswer2.setBackgroundResource(R.drawable.menubut2);
+                        buttonAnswer2.setBackgroundResource(R.color.goodAnswerBtnClr);
                         Log.d(TAG, "Answer OK " + curQuiz.getQuizObj().getName());
                     }
                     else {
-                        buttonAnswer2.setBackgroundResource(android.R.drawable.btn_default);
+                        buttonAnswer2.setBackgroundResource(R.color.badAnswerBtnClr);
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
@@ -117,11 +117,11 @@ public class SingleQuizFragment extends Fragment {
                     buttonAnswer3.setEnabled(false);
                     buttonAnswer4.setEnabled(false);
                     if (curQuiz.CheckAnswer(answerOptions.get(2))) {
-                        buttonAnswer3.setBackgroundResource(R.drawable.menubut2);
+                        buttonAnswer3.setBackgroundResource(R.color.goodAnswerBtnClr);
                         Log.d(TAG, "Answer OK " + curQuiz.getQuizObj().getName());
                     }
                     else {
-                        buttonAnswer3.setBackgroundResource(android.R.drawable.btn_default);
+                        buttonAnswer3.setBackgroundResource(R.color.badAnswerBtnClr);
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
@@ -133,11 +133,11 @@ public class SingleQuizFragment extends Fragment {
                     buttonAnswer3.setEnabled(false);
                     buttonAnswer4.setEnabled(false);
                     if (curQuiz.CheckAnswer(answerOptions.get(3))) {
-                        buttonAnswer4.setBackgroundResource(R.drawable.menubut2);
+                        buttonAnswer4.setBackgroundResource(R.color.goodAnswerBtnClr);
                         Log.d(TAG, "Answer OK " + curQuiz.getQuizObj().getName());
                     }
                     else {
-                        buttonAnswer4.setBackgroundResource(android.R.drawable.btn_default);
+                        buttonAnswer4.setBackgroundResource(R.color.badAnswerBtnClr);
                         Log.d(TAG, "Answer FAIL " + curQuiz.getQuizObj().getName());
                     }
                     //DO something
